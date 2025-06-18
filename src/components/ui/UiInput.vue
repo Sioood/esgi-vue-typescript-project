@@ -1,9 +1,10 @@
 <template>
   <fieldset class="flex flex-col gap-2">
     <label :for="id" class="text-sm font-semibold">{{ label }}</label>
-    <!-- class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" -->
     <input
       v-bind="$attrs"
+      :id="id"
+      :type="type"
       :disabled="typeof $attrs['disabled'] !== 'undefined'"
       :class="
         input({
@@ -44,6 +45,7 @@ type InputProps = VariantProps<typeof input>
 withDefaults(
   defineProps<{
     id?: string
+    type?: string
     label: string
     modelValue: string
     intent?: InputProps['intent']
