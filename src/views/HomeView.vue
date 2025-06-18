@@ -28,14 +28,30 @@
         :name="product.name"
         :description="product.description"
         :price="product.price"
+        :ingredients="product.ingredients"
+        @openSidebar="openSidebar(product)"
       />
     </div>
+
+    <UiSidebar
+      v-if="sidebarVisible && selectedProduct"
+      :id="selectedProduct.id"
+      :name="selectedProduct.name"
+      :description="selectedProduct.description"
+      :price="selectedProduct.price"
+      :image="'https://burgeraddict.fr/wp-content/uploads/2024/09/MSG-Smash-Burger-FT-RECIPE0124-d9682401f3554ef683e24311abdf342b.jpg'"
+      :ingredients="selectedProduct.ingredients"
+      :visible="sidebarVisible"
+      @close="closeSidebar"
+    />
+
   </main>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, watchEffect } from 'vue'
 import UiMenuCard from '@/components/ui/UiMenuCard.vue'
+import UiSidebar from '@/components/ui/UiSidebar.vue'
 import UiDialog from '@/components/ui/UiDialog.vue'
 import UsernameForm from '@/components/UsernameForm.vue'
 import { useUserStore } from '@/stores/user'
@@ -45,6 +61,8 @@ import { extractStore } from '@/composables/store'
 const { products, getProducts } = extractStore(useProductStore())
 const openUsernameForm = ref<boolean>(false)
 const { user, setUser } = extractStore(useUserStore())
+const selectedProduct = ref<Product | null>(null);
+const sidebarVisible = ref(false);
 
 watchEffect(() => {
   if (!user.value) {
@@ -55,4 +73,17 @@ watchEffect(() => {
 onMounted(async () => {
   await getProducts()
 })
+
+function openSidebar(product: Product) {
+  if (sidebarVisible.value && selectedProduct.value?.id === product.id) {
+    sidebarVisible.value = false;
+  } else {
+    selectedProduct.value = product;
+    sidebarVisible.value = true;
+  }
+}
+
+function closeSidebar() {
+  sidebarVisible.value = false;
+}
 </script>

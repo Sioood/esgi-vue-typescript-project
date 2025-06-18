@@ -11,10 +11,38 @@ app.use('/static', express.static('public'));
 
 // Données en mémoire (mock)
 const products = [
-  { id: 1, name: 'Cheeseburger', description: 'Beef patty, lettuce, tomato, cheese', price: 8.99, image: '/static/images/cheeseburger.jpg' },
-  { id: 2, name: 'Bacon Burger', description: 'Beef patty, bacon, cheese', price: 9.99, image: '/static/images/baconburger.jpg' },
-  { id: 3, name: 'Mushroom Burger', description: 'Beef patty, mushrooms, cheese', price: 10.49, image: '/static/images/mushroomburger.jpg' },
-  { id: 4, name: 'BBQ Burger', description: 'Beef patty, BBQ sauce, onion strings', price: 11.29, image: '/static/images/bbqburger.jpg' }
+  {
+    id: 1,
+    name: 'Cheeseburger',
+    description: 'Beef patty, lettuce, tomato, cheese',
+    price: 8.99,
+    image: '/static/images/cheeseburger.jpg',
+    ingredients: ['Pain', 'Steak de bœuf', 'Salade', 'Tomate', 'Fromage cheddar', 'Sauce burger']
+  },
+  {
+    id: 2,
+    name: 'Bacon Burger',
+    description: 'Beef patty, bacon, cheese',
+    price: 9.99,
+    image: '/static/images/baconburger.jpg',
+    ingredients: ['Pain', 'Steak de bœuf', 'Bacon croustillant', 'Fromage cheddar', 'Sauce barbecue']
+  },
+  {
+    id: 3,
+    name: 'Mushroom Burger',
+    description: 'Beef patty, mushrooms, cheese',
+    price: 10.49,
+    image: '/static/images/mushroomburger.jpg',
+    ingredients: ['Pain', 'Steak de bœuf', 'Champignons sautés', 'Fromage suisse', 'Sauce crémeuse aux champignons']
+  },
+  {
+    id: 4,
+    name: 'BBQ Burger',
+    description: 'Beef patty, BBQ sauce, onion strings',
+    price: 11.29,
+    image: '/static/images/bbqburger.jpg',
+    ingredients: ['Pain', 'Steak de bœuf', 'Sauce BBQ', 'Oignons frits', 'Cornichons', 'Fromage cheddar']
+  }
 ];
 
 

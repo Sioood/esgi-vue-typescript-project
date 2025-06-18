@@ -1,16 +1,16 @@
 <template>
   <div class="bg-white rounded-xl shadow overflow-hidden">
-    <img :src="image" :alt="name" class="h-48 w-full object-cover" />
+    <img :src="image" :alt="name" class="h-48 w-full object-cover cursor-pointer" @click="openSidebar"/>
     <div class="p-4 flex flex-col justify-between">
       <h2 class="text-xl font-bold mb-2">{{ name }}</h2>
-      <p class="text-gray-600 mb-4 line-clamp-2">{{ description }}</p>
+      <p class="text-gray-600 mb-4">{{ description }}</p>
       <div class="flex justify-between items-center">
         <span class="text-lg font-semibold text-orange-600">{{ price }} €</span>
         <button
           @click="addToCart()"
-          class="flex items-center gap-1 bg-orange-500 text-white px-3 py-1 rounded-lg hover:bg-orange-600 transition"
+          class="cursor-pointer flex items-center gap-1 bg-orange-500 text-white px-3 py-1 rounded-lg hover:bg-orange-600 transition"
         >
-          <Icon icon="mdi:cart-plus" width="20" height="20" />
+          <Icon icon="mdi:cart-plus" width="20" height="20"/>
           Ajouter
         </button>
       </div>
@@ -23,16 +23,23 @@ import { Icon } from '@iconify/vue'
 import { useCartStore } from '@/stores/cart'
 import { toast } from 'vue-sonner';
 
-const cart = useCartStore()
+const cart = useCartStore();
+const emit = defineEmits<{ (e: 'openSidebar'): void }>();
+
+function openSidebar() {
+  emit('openSidebar');
+}
 
 // Props qu'on passe à la card
 const props = defineProps<{
-  id: number
-  image: string
-  name: string
-  description: string
-  price: number
-}>()
+  id: number;
+  image: string;
+  name: string;
+  description: string;
+  price: number;
+  ingredients: string[];
+}>();
+
 
 // Event à émettre quand on clique sur "Ajouter"
 const addToCart = () => {
@@ -42,7 +49,9 @@ const addToCart = () => {
     description: props.description,
     price: props.price,
     image: props.image,
+    ingredients: props.ingredients
   })
   toast.success(`${props.name} ajouté au panier !`)
 }
 </script>
+
