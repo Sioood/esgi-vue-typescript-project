@@ -32,12 +32,10 @@ const router = createRouter({
       path: '/commandes',
       name: 'commandes',
       component: Commandes,
-    }
+    },
   ],
 })
 
-router.beforeEach((to) => {
-
-})
+router.beforeEach((to) => {})
 
 export default router

@@ -1,49 +1,48 @@
 <script setup lang="ts">
-import {ref, onMounted} from 'vue';
-import UiNavbar from '../components/ui/UiNavbar.vue';
-import UiButton from '../components/ui/UiButton.vue';
+import { ref, onMounted } from 'vue'
+import UiNavbar from '../components/ui/UiNavbar.vue'
+import UiButton from '../components/ui/UiButton.vue'
 
 interface Product {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  quantity?: number;
+  id: number
+  name: string
+  description: string
+  price: number
+  image: string
+  quantity?: number
 }
 
 interface Customer {
-  name: string;
-  email: string;
-  address: string;
+  name: string
+  email: string
+  address: string
 }
 
 interface Order {
-  id: number;
-  date: string;
-  customer: Customer;
-  items: Product[];
+  id: number
+  date: string
+  customer: Customer
+  items: Product[]
 }
 
-const orders = ref<Order[]>([]);
-const error = ref('');
+const orders = ref<Order[]>([])
+const error = ref('')
 
 onMounted(async () => {
   try {
-    const response = await fetch('http://localhost:3000/api/orders');
-    if (!response.ok) throw new Error('Erreur lors de la récupération des commandes');
-    orders.value = await response.json();
+    const response = await fetch('http://localhost:3000/api/orders')
+    if (!response.ok) throw new Error('Erreur lors de la récupération des commandes')
+    orders.value = await response.json()
   } catch (err: any) {
-    error.value = err.message || 'Erreur inattendue';
+    error.value = err.message || 'Erreur inattendue'
   }
-});
+})
 </script>
 
 <template>
   <main>
-    <UiNavbar/>
+    <UiNavbar />
     <div class="p-4">
-
       <h1 class="text-2xl font-bold mb-4">Liste des commandes</h1>
 
       <div v-if="error" class="text-red-500 mb-4">{{ error }}</div>
@@ -59,9 +58,8 @@ onMounted(async () => {
           </div>
 
           <div class="mb-2">
-            Client : <strong>{{ order.customer.name }}</strong>
-            ({{ order.customer.email }})
-            <br/>
+            Client : <strong>{{ order.customer.name }}</strong> ({{ order.customer.email }})
+            <br />
             Adresse : {{ order.customer.address }}
           </div>
 
@@ -73,9 +71,13 @@ onMounted(async () => {
           </div>
 
           <div class="mt-2 font-bold text-right">
-            Total : {{
-              order.items.reduce((acc, item) => acc + item.price * (item.quantity || 1), 0).toFixed(2)
-            }} €
+            Total :
+            {{
+              order.items
+                .reduce((acc, item) => acc + item.price * (item.quantity || 1), 0)
+                .toFixed(2)
+            }}
+            €
           </div>
         </div>
       </div>
