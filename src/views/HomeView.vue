@@ -39,7 +39,6 @@
 
 <script setup lang="ts">
 import { ref, onMounted, watchEffect } from 'vue'
-import UiButton from '@/components/ui/UiButton.vue'
 import UiNavbar from '@/components/ui/UiNavbar.vue'
 import UiMenuCard from '@/components/ui/UiMenuCard.vue'
 import UiDialog from '@/components/ui/UiDialog.vue'
