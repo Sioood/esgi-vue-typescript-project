@@ -11,7 +11,7 @@
       </li>
       <li class="flex items-center gap-1">
         <Icon icon="mdi:cart" width="24" height="24" />
-        <a href="/">Panier</a>
+        <RouterLink to="/panier">Panier</RouterLink>
       </li>
       <li class="flex items-center gap-1">
         <Icon icon="carbon:delivery" width="24" height="24" />
