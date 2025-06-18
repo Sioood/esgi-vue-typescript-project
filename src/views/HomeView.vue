@@ -57,6 +57,7 @@ import UsernameForm from '@/components/UsernameForm.vue'
 import { useUserStore } from '@/stores/user'
 import { useProductStore } from '@/stores/product'
 import { extractStore } from '@/composables/store'
+import type { Product } from '@/stores/product'
 
 const { products, getProducts } = extractStore(useProductStore())
 const openUsernameForm = ref<boolean>(false)
