@@ -3,7 +3,7 @@ import { onMounted } from 'vue'
 import UiButton from '../components/ui/UiButton.vue'
 import { useCartStore } from '@/stores/cart.ts'
 import { toast } from 'vue-sonner'
-import type { Product } from '@/views/HomeView.vue'
+import type { Product } from '@/stores/product'
 
 const cart = useCartStore()
 

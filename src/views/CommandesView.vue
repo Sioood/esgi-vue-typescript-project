@@ -1,14 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-
-interface Product {
-  id: number
-  name: string
-  description: string
-  price: number
-  image: string
-  quantity?: number
-}
+import type { Product } from '@/stores/product'
 
 interface Customer {
   name: string

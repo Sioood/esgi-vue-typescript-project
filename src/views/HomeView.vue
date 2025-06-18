@@ -39,17 +39,10 @@ import UiMenuCard from '@/components/ui/UiMenuCard.vue'
 import UiDialog from '@/components/ui/UiDialog.vue'
 import UsernameForm from '@/components/UsernameForm.vue'
 import { useUserStore } from '@/stores/user'
+import { useProductStore } from '@/stores/product'
 import { extractStore } from '@/composables/store'
 
-export interface Product {
-  id: number
-  name: string
-  description: string
-  price: number
-  image: string
-}
-
-const products = ref<Product[]>([])
+const { products, getProducts } = extractStore(useProductStore())
 const openUsernameForm = ref<boolean>(false)
 const { user, setUser } = extractStore(useUserStore())
 
@@ -60,13 +53,6 @@ watchEffect(() => {
 })
 
 onMounted(async () => {
-  try {
-    const response = await fetch('http://localhost:3000/api/products')
-    const data = await response.json()
-    products.value = data
-    console.log('Produits récupérés :', data)
-  } catch (error) {
-    console.error('Erreur lors de la récupération des produits:', error)
-  }
+  await getProducts()
 })
 </script>
