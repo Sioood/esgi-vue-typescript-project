@@ -5,14 +5,14 @@ export const useUserStore = defineStore('user', () => {
   interface User {
     name: string
     email?: string
-    adress?: string
+    address?: string
   }
 
   const user = ref<User | null>(JSON.parse(localStorage.getItem('user') || 'null'))
 
   const setUser = (newUser: User) => {
-    user.value = newUser
-    localStorage.setItem('user', JSON.stringify(newUser))
+    user.value = { ...user.value, ...newUser}
+    localStorage.setItem('user', JSON.stringify(user.value))
   }
 
   watch(user, () => localStorage.setItem('user', JSON.stringify(user.value)))
