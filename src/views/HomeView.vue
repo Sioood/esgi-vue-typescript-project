@@ -23,7 +23,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
       <UiMenuCard
         v-for="product in products"
-        :key="product.id"
+        :id="product.id"
         :image="'https://burgeraddict.fr/wp-content/uploads/2024/09/MSG-Smash-Burger-FT-RECIPE0124-d9682401f3554ef683e24311abdf342b.jpg'"
         :name="product.name"
         :description="product.description"

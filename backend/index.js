@@ -33,9 +33,16 @@ app.get('/api/products', (req, res) => {
   res.json(products);
 });
 
+// Récupérer tous les produits
+app.get('/api/orders', (req, res) => {
+  res.json(orders);
+});
+
 // Passer une commande
 app.post('/api/orders', (req, res) => {
   const { items, customer } = req.body;
+
+  console.log(req.body);
 
   if (!items || !Array.isArray(items) || items.length === 0) {
     return res.status(400).json({ error: 'Aucun article dans la commande' });
@@ -51,6 +58,7 @@ app.post('/api/orders', (req, res) => {
   orders.push(newOrder);
   res.status(201).json({ message: 'Commande enregistrée', order: newOrder });
 });
+
 
 // Démarrer le serveur
 app.listen(PORT, () => {

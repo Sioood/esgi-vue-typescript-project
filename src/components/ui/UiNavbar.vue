@@ -18,7 +18,7 @@
       </li>
       <li class="flex items-center gap-1">
         <Icon icon="carbon:delivery" width="24" height="24" />
-        <a href="/">Commandes</a>
+        <RouterLink to="/commandes">Commandes</RouterLink>
       </li>
     </ul>
   </nav>
