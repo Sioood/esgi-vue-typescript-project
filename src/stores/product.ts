@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { toast } from 'vue-sonner';
+import { toast } from 'vue-sonner'
 
 export interface Product {
   id: number

@@ -5,7 +5,6 @@ import UiButton from '@/components/ui/UiButton.vue'
 import JSConfetti from 'js-confetti'
 import { onMounted } from 'vue'
 
-
 onMounted(() => {
   const jsConfetti = new JSConfetti()
   jsConfetti.addConfetti({

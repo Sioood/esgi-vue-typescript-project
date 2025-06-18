@@ -30,6 +30,10 @@ export const useCartStore = defineStore('cart', () => {
     }
   }
 
+  const quantity = computed(() =>
+    items.value.reduce((total, item) => total + (item.quantity || 1), 0),
+  )
+
   function removeProduct(productId: number) {
     items.value = items.value.filter((item) => item.id !== productId)
   }
@@ -56,5 +60,5 @@ export const useCartStore = defineStore('cart', () => {
     )
   })
 
-  return { items, addProduct, removeProduct, clearCart, total, formattedTotal }
+  return { items, addProduct, removeProduct, clearCart, total, formattedTotal, quantity }
 })
