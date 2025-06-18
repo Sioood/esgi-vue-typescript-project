@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="sticky top-0 flex justify-between items-center bg-orange-500 px-4 py-2 mb-5 text-white font-bold"
+    class="z-[999] sticky top-0 flex justify-between items-center bg-orange-500 px-4 py-2 mb-5 text-white font-bold shadow"
   >
     <div class="flex items-center space-x-2 text-xl">
       <img class="size-10 rounded" src="https://media.fortniteapi.io/images/cosmetics/f86b3d5-a88f224-dad1a85-638e91d/v2/icon_background.png" alt="">
