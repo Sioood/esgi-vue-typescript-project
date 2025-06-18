@@ -1,6 +1,6 @@
 <template>
   <DialogRoot :open="open" @update:open="emit('update:open', $event)">
-    <DialogTrigger>
+    <DialogTrigger :class="triggerClass">
       <slot name="trigger" />
     </DialogTrigger>
     <DialogPortal>
@@ -54,6 +54,7 @@ defineProps<{
   open: boolean
   closable?: boolean
   closableOnClickOutside?: boolean
+  triggerClass?: string
 }>()
 
 const emit = defineEmits<{

@@ -1,12 +1,14 @@
 <template>
-  <main>
-    <UiNavbar />
+<div>
+  <UiNavbar />
+  <main class="p-6">
 
     <UiDialog
       :open="openUsernameForm"
       :closableOnClickOutside="false"
       @close="openUsernameForm = false"
       @update:open="openUsernameForm = $event"
+      triggerClass="fixed"
     >
       <template v-slot="{ close }">
         <UsernameForm
@@ -20,7 +22,7 @@
       </template>
     </UiDialog>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
+    <div class="flex flex-wrap gap-4">
       <UiMenuCard
         v-for="product in products"
         :key="product.id"
@@ -32,6 +34,7 @@
       />
     </div>
   </main>
+</div>
 </template>
 
 <script setup lang="ts">
