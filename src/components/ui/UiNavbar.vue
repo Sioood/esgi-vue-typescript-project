@@ -30,7 +30,7 @@
           >
             {{ cart.quantity }}
           </span>
-          <Icon icon="mdi:cart" width="24" height="24" />
+          <Icon id="cart-icon" icon="mdi:cart" width="24" height="24" />
           <span class="hidden sm:inline">Panier</span>
         </RouterLink>
       </li>

@@ -22,6 +22,7 @@
       <div class="flex justify-between items-center">
         <span class="text-lg font-semibold text-orange-600">{{ price }} €</span>
         <button
+          :id="`add-button-${id}`"
           @click.stop="addToCart()"
           class="cursor-pointer flex items-center gap-1 bg-orange-500 text-white px-3 py-1 rounded-lg hover:bg-orange-600 transition"
         >
@@ -38,7 +39,9 @@ import { Icon } from '@iconify/vue'
 import { useCartStore } from '@/stores/cart'
 import { toast } from 'vue-sonner'
 import { ref, nextTick } from 'vue'
+import { useFlyToCart } from '@/composables/useFlyToCart'
 
+const { fly } = useFlyToCart()
 const cart = useCartStore()
 const emit = defineEmits<{ (e: 'openSidebar'): void }>()
 const details = ref<HTMLDivElement | null>(null)
@@ -73,6 +76,11 @@ const addToCart = () => {
     image: props.image,
     ingredients: props.ingredients,
   })
+  const fromEl = document.getElementById(`add-button-${props.id}`)
+  const toEl = document.getElementById('cart-icon')
+  if (fromEl && toEl) {
+    fly(props.image, fromEl, toEl)
+  }
   toast.success(`${props.name} ajouté au panier !`)
 }
 </script>
