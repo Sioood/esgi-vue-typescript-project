@@ -19,21 +19,21 @@
 </template>
 
 <script setup lang="ts">
-import { Icon } from '@iconify/vue';
+import { Icon } from '@iconify/vue'
 
 // Props qu'on passe à la card
 defineProps<{
-  image: string;
-  name: string;
-  description: string;
-  price: number;
-}>();
+  image: string
+  name: string
+  description: string
+  price: number
+}>()
 
 // Event à émettre quand on clique sur "Ajouter"
 const addToCart = () => {
   // Ici tu peux faire un emit pour notifier le parent
   // Par exemple :
   // emit('add', { id, name, price })
-  alert('Burger ajouté au panier !');
-};
+  alert('Burger ajouté au panier !')
+}
 </script>

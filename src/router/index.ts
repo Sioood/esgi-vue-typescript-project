@@ -14,7 +14,7 @@ const router = createRouter({
       path: '/panier',
       name: 'panier',
       component: Panier,
-    }
+    },
   ],
 })
 

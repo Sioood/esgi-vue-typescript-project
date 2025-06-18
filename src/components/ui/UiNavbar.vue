@@ -5,6 +5,9 @@
       <span>BURGOUZZZ DE WALOUZZZZZ</span>
     </div>
     <ul class="flex space-x-6 text-lg">
+      <li v-if="user?.name" class="flex items-center gap-1">
+        <span>Bonjour {{ user.name }}</span>
+      </li>
       <li class="flex items-center gap-1">
         <Icon icon="ic:baseline-home" width="24" height="24" />
         <a href="/">Accueil</a>
@@ -22,5 +25,8 @@
 </template>
 
 <script setup lang="ts">
-import { Icon } from '@iconify/vue';
+import { Icon } from '@iconify/vue'
+import { useUserStore } from '@/stores/user'
+import { extractStore } from '@/composables/store'
+const { user } = extractStore(useUserStore())
 </script>

@@ -8,7 +8,7 @@
         disabled: typeof $attrs['disabled'] !== 'undefined',
       })
     "
-    class="flex w-fit"
+    class="flex size-fit"
   >
     <slot />
   </button>
@@ -42,8 +42,8 @@ type ButtonProps = VariantProps<typeof button>
 
 withDefaults(
   defineProps<{
-    intent: ButtonProps['intent']
-    size: ButtonProps['size']
+    intent?: ButtonProps['intent']
+    size?: ButtonProps['size']
   }>(),
   {
     intent: 'primary',

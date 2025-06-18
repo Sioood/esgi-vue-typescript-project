@@ -1,5 +1,5 @@
 <template>
-  <DialogRoot v-slot="{ open, close }">
+  <DialogRoot :open="open" @update:open="emit('update:open', $event)">
     <DialogTrigger>
       <slot name="trigger" />
     </DialogTrigger>
@@ -14,7 +14,13 @@
         "
       >
         <UiCard class="flex flex-col">
-          <UiButton v-if="closable" intent="ghost" size="small" @click="close" class="w-full justify-end">
+          <UiButton
+            v-if="closable"
+            intent="ghost"
+            size="small"
+            @click="emit('close')"
+            class="w-full justify-end"
+          >
             <Icon icon="mdi:close" width="20" height="20" />
           </UiButton>
           <DialogTitle>
@@ -23,7 +29,7 @@
           <DialogDescription>
             <slot name="description" />
           </DialogDescription>
-          <slot :open="open" :close="close" />
+          <slot :open="open" :close="() => emit('close')" />
         </UiCard>
       </DialogContent>
     </DialogPortal>
@@ -45,7 +51,14 @@ import UiCard from './UiCard.vue'
 import UiButton from './UiButton.vue'
 
 defineProps<{
+  open: boolean
   closable?: boolean
   closableOnClickOutside?: boolean
+}>()
+
+const emit = defineEmits<{
+  (e: 'update:open', value: boolean): void
+  (e: 'open'): void
+  (e: 'close'): void
 }>()
 </script>
