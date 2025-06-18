@@ -65,9 +65,8 @@ async function submitOrder() {
 </script>
 
 <template>
-  <main class="p-4">
-    <UiNavbar />
-
+  <UiNavbar />
+  <main class="p-6">
     <h1 class="text-2xl font-bold mb-4">Finaliser ma commande</h1>
 
     <div v-if="error" class="text-red-500 mb-4">{{ error }}</div>
