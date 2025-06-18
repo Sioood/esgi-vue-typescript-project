@@ -9,6 +9,7 @@ export interface Product {
   price: number
   image: string
   quantity?: number
+  ingredients: string[]
 }
 
 export const useProductStore = defineStore('product', () => {
