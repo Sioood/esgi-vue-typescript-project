@@ -19,6 +19,6 @@ onMounted(async () => {
 <template>
   <main>
     {{ message }}
-    <UiButton>Button</UiButton>
+    <UiButton intent="primary" size="medium">Button</UiButton>
   </main>
 </template>
