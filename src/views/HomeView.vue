@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import UiButton from '../components/ui/UiButton.vue'
 
 const message = ref('');
 
@@ -18,5 +19,6 @@ onMounted(async () => {
 <template>
   <main>
     {{ message }}
+    <UiButton>Button</UiButton>
   </main>
 </template>
