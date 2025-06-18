@@ -16,7 +16,7 @@ const products = [
     name: 'Cheeseburger',
     description: 'Beef patty, lettuce, tomato, cheese',
     price: 8.99,
-    image: '/static/images/cheeseburger.jpg',
+    image: 'https://burgeraddict.fr/wp-content/uploads/2024/09/MSG-Smash-Burger-FT-RECIPE0124-d9682401f3554ef683e24311abdf342b.jpg',
     ingredients: ['Pain', 'Steak de bœuf', 'Salade', 'Tomate', 'Fromage cheddar', 'Sauce burger']
   },
   {
@@ -24,7 +24,7 @@ const products = [
     name: 'Bacon Burger',
     description: 'Beef patty, bacon, cheese',
     price: 9.99,
-    image: '/static/images/baconburger.jpg',
+    image: 'https://burgeraddict.fr/wp-content/uploads/2024/09/MSG-Smash-Burger-FT-RECIPE0124-d9682401f3554ef683e24311abdf342b.jpg',
     ingredients: ['Pain', 'Steak de bœuf', 'Bacon croustillant', 'Fromage cheddar', 'Sauce barbecue']
   },
   {
@@ -32,7 +32,7 @@ const products = [
     name: 'Mushroom Burger',
     description: 'Beef patty, mushrooms, cheese',
     price: 10.49,
-    image: '/static/images/mushroomburger.jpg',
+    image: 'https://burgeraddict.fr/wp-content/uploads/2024/09/MSG-Smash-Burger-FT-RECIPE0124-d9682401f3554ef683e24311abdf342b.jpg',
     ingredients: ['Pain', 'Steak de bœuf', 'Champignons sautés', 'Fromage suisse', 'Sauce crémeuse aux champignons']
   },
   {
@@ -40,7 +40,7 @@ const products = [
     name: 'BBQ Burger',
     description: 'Beef patty, BBQ sauce, onion strings',
     price: 11.29,
-    image: '/static/images/bbqburger.jpg',
+    image: 'https://burgeraddict.fr/wp-content/uploads/2024/09/MSG-Smash-Burger-FT-RECIPE0124-d9682401f3554ef683e24311abdf342b.jpg',
     ingredients: ['Pain', 'Steak de bœuf', 'Sauce BBQ', 'Oignons frits', 'Cornichons', 'Fromage cheddar']
   }
 ];
@@ -58,6 +58,7 @@ app.get('/api/hello', (req, res) => {
 
 // Récupérer tous les produits
 app.get('/api/products', (req, res) => {
+  console.log(products);
   res.json(products);
 });
 

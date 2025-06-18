@@ -20,8 +20,7 @@ onMounted(async () => {
 
 <template>
   <main>
-    <!--    <UiButton intent="primary" size="medium">Button</UiButton>-->
-    <div class="ps-72 pe-72">
+    <div class="max-w-3xl mx-auto px-4">
       <h1 class="text-2xl font-bold mb-4">Mon Panier</h1>
 
       <div v-if="cart.items.length === 0" class="text-gray-500">Votre panier est vide.</div>
@@ -30,13 +29,13 @@ onMounted(async () => {
         <div
           v-for="item in cart.items"
           :key="item.id"
-          class="flex justify-between items-center p-4 border rounded bg-white shadow"
+          class="p-4 border rounded bg-white shadow space-y-2 sm:space-y-0 sm:flex sm:justify-between sm:items-center"
         >
           <div>
             <div class="font-bold text-lg">{{ item.name }}</div>
             <div class="text-gray-500">{{ item.quantity }} x {{ item.price }} €</div>
           </div>
-          <div class="flex items-center gap-4">
+          <div class="flex justify-between items-center gap-4">
             <div class="font-bold text-lg">{{ item.price * (item.quantity || 1) }} €</div>
             <UiButton intent="error" size="small" @click="removeProduct(item)">
               Supprimer

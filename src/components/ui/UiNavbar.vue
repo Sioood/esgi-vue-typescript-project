@@ -4,23 +4,31 @@
   >
     <div class="flex items-center space-x-2 text-xl">
       <Icon icon="emojione:hamburger" width="32" height="32" />
-      <span>BURGOUZZZ DE WALOUZZZZZ</span>
+      <!-- Le texte s'affiche seulement à partir de sm -->
+      <span class="hidden sm:inline">BURGOUZZZ DE WALOUZZZZZ</span>
     </div>
+
     <ul class="flex space-x-6 text-lg">
       <li v-if="user?.name" class="flex items-center gap-1">
-        <span>Bonjour {{ user.name }}</span>
+        <span class="hidden sm:inline">Bonjour {{ user.name }}</span>
       </li>
       <li class="flex items-center gap-1">
-        <Icon icon="ic:baseline-home" width="24" height="24" />
-        <a href="/">Accueil</a>
+        <RouterLink to="/" class="flex items-center gap-1">
+          <Icon icon="ic:baseline-home" width="24" height="24" />
+          <span class="hidden sm:inline">Accueil</span>
+        </RouterLink>
       </li>
       <li class="flex items-center gap-1">
-        <Icon icon="mdi:cart" width="24" height="24" />
-        <RouterLink to="/panier">Panier</RouterLink>
+        <RouterLink to="/panier" class="flex items-center gap-1">
+          <Icon icon="mdi:cart" width="24" height="24" />
+          <span class="hidden sm:inline">Panier</span>
+        </RouterLink>
       </li>
       <li class="flex items-center gap-1">
-        <Icon icon="carbon:delivery" width="24" height="24" />
-        <RouterLink to="/commandes">Commandes</RouterLink>
+        <RouterLink to="/commandes" class="flex items-center gap-1">
+          <Icon icon="carbon:delivery" width="24" height="24" />
+          <span class="hidden sm:inline">Commandes</span>
+        </RouterLink>
       </li>
     </ul>
   </nav>
