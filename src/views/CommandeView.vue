@@ -2,11 +2,11 @@
 import { ref } from 'vue'
 import { useCartStore } from '@/stores/cart'
 import { useRouter } from 'vue-router'
-import UiNavbar from '@/components/ui/UiNavbar.vue'
 import UiButton from '@/components/ui/UiButton.vue'
 import UiInput from '@/components/ui/UiInput.vue'
 import { useUserStore } from '@/stores/user'
 import { extractStore } from '@/composables/store'
+import { toast } from 'vue-sonner'
 
 const cart = useCartStore()
 const router = useRouter()
@@ -56,6 +56,7 @@ async function submitOrder() {
     }
 
     cart.clearCart()
+    toast.success('Commande envoyée')
 
     router.push('/confirmation')
   } catch (err: any) {
@@ -65,42 +66,47 @@ async function submitOrder() {
 </script>
 
 <template>
-  <UiNavbar />
-  <main class="p-6">
-    <h1 class="text-2xl font-bold mb-4">Finaliser ma commande</h1>
+  <div>
+    <main class="p-6">
+      <h1 class="text-2xl font-bold mb-4">Finaliser ma commande</h1>
 
-    <div v-if="error" class="text-red-500 mb-4">{{ error }}</div>
+      <div v-if="error" class="text-red-500 mb-4">{{ error }}</div>
 
-    <form class="space-y-4" @submit.prevent="submitOrder">
-      <UiInput
-        id="name"
-        label="Nom"
-        v-model="name"
-        intent="primary"
-        size="medium"
-        @update:model-value="setUser({ name })"
-      />
-      <UiInput
-        id="email"
-        label="Email"
-        type="email"
-        v-model="email"
-        intent="primary"
-        size="medium"
-        @update:model-value="setUser({ name, email })"
-      />
-      <UiInput
-        id="address"
-        label="Adresse"
-        v-model="address"
-        intent="primary"
-        size="medium"
-        @update:model-value="setUser({ name, address })"
-      />
+      <form class="space-y-4" @submit.prevent="submitOrder">
+        <UiInput
+          id="name"
+          label="Nom"
+          v-model="name"
+          intent="primary"
+          size="medium"
+          @update:model-value="setUser({ name })"
+        />
+        <UiInput
+          id="email"
+          label="Email"
+          type="email"
+          v-model="email"
+          intent="primary"
+          size="medium"
+          @update:model-value="setUser({ name, email })"
+        />
+        <UiInput
+          id="address"
+          label="Adresse"
+          v-model="address"
+          intent="primary"
+          size="medium"
+          @update:model-value="setUser({ name, address })"
+        />
 
-      <UiButton intent="primary" size="large" class="w-full" type="submit">
-        Valider ma commande
-      </UiButton>
-    </form>
-  </main>
+        <UiButton intent="primary" size="large" class="w-full" type="submit">
+          Valider ma commande
+        </UiButton>
+      </form>
+    </main>
+  </div>
 </template>
+
+<style>
+@import url('vue-sonner/style.css');
+</style>

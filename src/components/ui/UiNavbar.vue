@@ -1,5 +1,7 @@
 <template>
-  <nav class="sticky top-0 flex justify-between items-center bg-orange-500 px-4 py-2 mb-5 text-white font-bold">
+  <nav
+    class="sticky top-0 flex justify-between items-center bg-orange-500 px-4 py-2 mb-5 text-white font-bold"
+  >
     <div class="flex items-center space-x-2 text-xl">
       <Icon icon="emojione:hamburger" width="32" height="32" />
       <span>BURGOUZZZ DE WALOUZZZZZ</span>

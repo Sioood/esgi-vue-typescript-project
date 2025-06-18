@@ -1,8 +1,5 @@
 <template>
-<div>
-  <UiNavbar />
   <main class="p-6">
-
     <UiDialog
       :open="openUsernameForm"
       :closableOnClickOutside="false"
@@ -34,19 +31,17 @@
       />
     </div>
   </main>
-</div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, watchEffect } from 'vue'
-import UiNavbar from '@/components/ui/UiNavbar.vue'
 import UiMenuCard from '@/components/ui/UiMenuCard.vue'
 import UiDialog from '@/components/ui/UiDialog.vue'
 import UsernameForm from '@/components/UsernameForm.vue'
 import { useUserStore } from '@/stores/user'
 import { extractStore } from '@/composables/store'
 
-interface Product {
+export interface Product {
   id: number
   name: string
   description: string

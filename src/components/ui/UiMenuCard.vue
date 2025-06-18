@@ -19,21 +19,20 @@
 </template>
 
 <script setup lang="ts">
-import { Icon } from '@iconify/vue';
-import { useCartStore } from '@/stores/cart';
+import { Icon } from '@iconify/vue'
+import { useCartStore } from '@/stores/cart'
+import { toast } from 'vue-sonner';
 
-const cart = useCartStore();
+const cart = useCartStore()
 
 // Props qu'on passe à la card
 const props = defineProps<{
-  id: number;
-  image: string;
-  name: string;
-  description: string;
-  price: number;
-}>();
-
-
+  id: number
+  image: string
+  name: string
+  description: string
+  price: number
+}>()
 
 // Event à émettre quand on clique sur "Ajouter"
 const addToCart = () => {
@@ -42,9 +41,8 @@ const addToCart = () => {
     name: props.name,
     description: props.description,
     price: props.price,
-    image: props.image
-  });
-  alert('Burger ajouté au panier !');
-};
+    image: props.image,
+  })
+  toast.success(`${props.name} ajouté au panier !`)
+}
 </script>
-

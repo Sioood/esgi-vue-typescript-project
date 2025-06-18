@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import UiNavbar from '../components/ui/UiNavbar.vue'
-import UiButton from '../components/ui/UiButton.vue'
 
 interface Product {
   id: number
@@ -41,7 +39,6 @@ onMounted(async () => {
 
 <template>
   <main>
-    <UiNavbar />
     <div class="p-4">
       <h1 class="text-2xl font-bold mb-4">Liste des commandes</h1>
 
