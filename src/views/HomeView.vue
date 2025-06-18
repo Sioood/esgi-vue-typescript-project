@@ -22,7 +22,7 @@
       </template>
     </UiDialog>
 
-    <div class="flex flex-wrap gap-4">
+    <div class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4">
       <UiMenuCard
         v-for="product in products"
         :key="product.id"
