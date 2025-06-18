@@ -1,21 +1,9 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import UiButton from '../components/ui/UiButton.vue'
+import UiButton from '@/components/ui/UiButton.vue'
 import { useCartStore } from '@/stores/cart.ts'
-import { toast } from 'vue-sonner'
-import type { Product } from '@/stores/product'
+import UiAddItemButton from '@/components/ui/UiAddItemButton.vue';
 
 const cart = useCartStore()
-
-const removeProduct = (product: Product) => {
-  cart.removeProduct(product.id)
-  toast.success(`${product.name} supprimé du panier`)
-}
-
-onMounted(async () => {
-  try {
-  } catch (error) {}
-})
 </script>
 
 <template>
@@ -37,9 +25,8 @@ onMounted(async () => {
           </div>
           <div class="flex justify-between items-center gap-4">
             <div class="font-bold text-lg">{{ item.price * (item.quantity || 1) }} €</div>
-            <UiButton intent="error" size="small" @click="removeProduct(item)">
-              Supprimer
-            </UiButton>
+
+            <UiAddItemButton deleteAllVisible :product="item" />
           </div>
         </div>
 
