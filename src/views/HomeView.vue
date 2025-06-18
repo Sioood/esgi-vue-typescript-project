@@ -35,7 +35,7 @@ onMounted(async () => {
       <UiCard
         v-for="product in products"
         :key="product.id"
-        :image="'http://localhost:3000' + product.image"
+        :image="'https://burgeraddict.fr/wp-content/uploads/2024/09/MSG-Smash-Burger-FT-RECIPE0124-d9682401f3554ef683e24311abdf342b.jpg'"
         :name="product.name"
         :description="product.description"
         :price="product.price"
