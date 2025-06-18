@@ -8,6 +8,7 @@
         disabled: typeof $attrs['disabled'] !== 'undefined',
       })
     "
+    class="flex w-fit"
   >
     <slot />
   </button>
