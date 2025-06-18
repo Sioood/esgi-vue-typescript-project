@@ -4,12 +4,7 @@
       <UiMenuCard
         v-for="product in products"
         :key="product.id"
-        :id="product.id"
-        :image="product.image"
-        :name="product.name"
-        :description="product.description"
-        :price="product.price"
-        :ingredients="product.ingredients"
+        :product="product"
         @openSidebar="openSidebar(product)"
       />
     </div>

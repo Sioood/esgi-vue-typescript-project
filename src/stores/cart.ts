@@ -38,6 +38,16 @@ export const useCartStore = defineStore('cart', () => {
     items.value = items.value.filter((item) => item.id !== productId)
   }
 
+  function subtractProduct(productId: number) {
+    const item = items.value.find((item) => item.id === productId)
+    if (item) {
+      item.quantity = (item.quantity || 1) - 1
+      if (item.quantity === 0) {
+        items.value = items.value.filter((item) => item.id !== productId)
+      }
+    }
+  }
+
   const total = computed(() => {
     return items.value.reduce((acc, item) => acc + item.price * (item.quantity || 1), 0)
   })
@@ -60,5 +70,5 @@ export const useCartStore = defineStore('cart', () => {
     )
   })
 
-  return { items, addProduct, removeProduct, clearCart, total, formattedTotal, quantity }
+  return { items, addProduct, subtractProduct, removeProduct, clearCart, total, formattedTotal, quantity }
 })

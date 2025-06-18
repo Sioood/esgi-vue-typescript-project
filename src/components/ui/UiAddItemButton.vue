@@ -1,0 +1,51 @@
+<template>
+  <div class="flex flex-wrap gap-2 items-center justify-center">
+    <UiButton v-if="total > 0" intent="warning" @click="subtractFromCart()">
+      <Icon v-if="total === 1" icon="mdi:trashcan" width="20" height="20" />
+      <Icon v-else icon="mdi:minus" width="20" height="20" />
+      <span v-if="!isProductInCart">Ajouter au panier</span>
+    </UiButton>
+
+    <span v-if="total > 0" class="mx-3 font-bold">
+      {{ total }}
+    </span>
+
+    <UiButton intent="warning" @click="addToCart">
+      <Icon icon="mdi:cart-plus" width="20" height="20" />
+      <span v-if="!isProductInCart">Ajouter au panier</span>
+    </UiButton>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { Icon } from '@iconify/vue'
+import UiButton from '@/components/ui/UiButton.vue'
+import type { Product } from '@/stores/product'
+import { useCartStore } from '@/stores/cart'
+import { extractStore } from '@/composables/store'
+import { computed } from 'vue'
+import { toast } from 'vue-sonner'
+
+const { items, addProduct, subtractProduct } = extractStore(useCartStore())
+
+const props = defineProps<{ product: Product }>()
+
+const isProductInCart = computed(() => items.value.some((item) => item.id === props.product?.id))
+const total = computed(() => {
+  if (!isProductInCart.value) return 0
+
+  return items.value
+    .filter((item) => item.id === props.product?.id)
+    .reduce((acc, item) => acc + (item.quantity || 1), 0)
+})
+
+const addToCart = () => {
+  addProduct(props.product)
+  toast.success(`${props.product.name} ajouté au panier !`)
+}
+
+const subtractFromCart = () => {
+  subtractProduct(props.product.id)
+  toast.success(`${props.product.name} supprimé du panier`)
+}
+</script>
