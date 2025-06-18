@@ -8,7 +8,7 @@
         disabled: typeof $attrs['disabled'] !== 'undefined',
       })
     "
-    class="flex size-fit"
+    class="size-fit flex items-center justify-center"
   >
     <slot />
   </button>
