@@ -3,7 +3,7 @@
     class="sticky top-0 flex justify-between items-center bg-orange-500 px-4 py-2 mb-5 text-white font-bold"
   >
     <div class="flex items-center space-x-2 text-xl">
-      <Icon icon="emojione:hamburger" width="32" height="32" />
+      <img class="size-10 rounded" src="https://media.fortniteapi.io/images/cosmetics/f86b3d5-a88f224-dad1a85-638e91d/v2/icon_background.png" alt="">
       <!-- Le texte s'affiche seulement à partir de sm -->
       <span class="hidden sm:inline">BURGOUZZZ DE WALOUZZZZZ</span>
     </div>
