@@ -13,7 +13,7 @@
       {{ total }}
     </span>
 
-    <UiButton intent="warning" @click="addToCart">
+    <UiButton :id="`add-button-${product.id}`" intent="warning" @click="addToCart">
       <Icon icon="mdi:cart-plus" width="20" height="20" />
       <span v-if="!isProductInCart">Ajouter au panier</span>
     </UiButton>
@@ -28,7 +28,9 @@ import { useCartStore } from '@/stores/cart'
 import { extractStore } from '@/composables/store'
 import { computed } from 'vue'
 import { toast } from 'vue-sonner'
+import {useFlyToCart} from "@/composables/useFlyToCart.ts";
 
+const { fly } = useFlyToCart()
 const { items, addProduct, subtractProduct, removeProduct } = extractStore(useCartStore())
 
 const props = withDefaults(
@@ -52,6 +54,11 @@ const total = computed(() => {
 
 const addToCart = () => {
   addProduct(props.product)
+  const fromEl = document.getElementById(`add-button-${props.product.id}`)
+  const toEl = document.getElementById('cart-icon')
+  if (fromEl && toEl) {
+    fly(props.product.image, fromEl, toEl)
+  }
   toast.success(`${props.product.name} ajouté au panier !`)
 }
 
