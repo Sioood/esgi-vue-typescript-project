@@ -16,6 +16,30 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 
 ## Project Setup
 
+## Go to the backend folder
+
+```sh
+cd backend
+```
+
+## Install dependencies
+
+```sh
+npm install
+```
+## Start the backend server
+
+```sh
+node index.js
+```
+## Return to the project root
+
+```sh
+cd ..
+```
+
+## Install frontend dependencies
+
 ```sh
 pnpm install
 ```
