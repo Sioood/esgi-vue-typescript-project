@@ -1,5 +1,6 @@
 import { ref, watch } from 'vue'
 import { defineStore } from 'pinia'
+import router from '@/router'
 
 export const useUserStore = defineStore('user', () => {
   interface User {
@@ -15,7 +16,13 @@ export const useUserStore = defineStore('user', () => {
     localStorage.setItem('user', JSON.stringify(user.value))
   }
 
+  const logout = () => {
+    user.value = null
+    localStorage.removeItem('user')
+    router.push({ name: 'login' })
+  }
+
   watch(user, () => localStorage.setItem('user', JSON.stringify(user.value)))
 
-  return { user, setUser }
+  return { user, setUser, logout }
 })

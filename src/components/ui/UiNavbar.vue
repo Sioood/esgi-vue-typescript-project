@@ -15,6 +15,9 @@
     <ul class="flex space-x-6 text-lg">
       <li v-if="user?.name" class="flex items-center gap-1">
         <span class="hidden sm:inline">Bonjour {{ user.name }}</span>
+        <button @click="logout" class="cursor-pointer">
+          <Icon icon="mdi:logout" width="24" height="24" />
+        </button>
       </li>
       <li class="flex items-center gap-1">
         <RouterLink to="/" class="flex items-center gap-1">
@@ -49,7 +52,6 @@ import { Icon } from '@iconify/vue'
 import { useUserStore } from '@/stores/user'
 import { useCartStore } from '@/stores/cart'
 import { extractStore } from '@/composables/store'
-import { computed } from 'vue'
-const { user } = extractStore(useUserStore())
+const { user, logout } = extractStore(useUserStore())
 const cart = useCartStore()
 </script>
