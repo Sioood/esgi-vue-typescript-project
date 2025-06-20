@@ -9,12 +9,11 @@ app.use(express.json());
 
 app.use('/static', express.static('public'));
 
-// Données en mémoire (mock)
 const products = [
   {
     id: 1,
     name: 'Cheeseburger',
-    description: 'Un classique du cheese',
+    description: "Du pain, du steak, du fromage... Simple. Efficace. Ton estomac va t’applaudir.",
     price: 8.99,
     image: 'https://images.unsplash.com/photo-1508737027454-e6454ef45afd?q=80&w=986&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     ingredients: ['Pain', 'Steak', 'Salade', 'Tomate', 'Fromage']
@@ -22,7 +21,7 @@ const products = [
   {
     id: 2,
     name: 'Bacon Burger',
-    description: 'Pour les kiffeurs de bacon',
+    description: "Pour les vrais kiffeurs de bacon. Ici, le cochon est en full overtime.",
     price: 9.99,
     image: 'https://burgeraddict.fr/wp-content/uploads/2024/09/MSG-Smash-Burger-FT-RECIPE0124-d9682401f3554ef683e24311abdf342b.jpg',
     ingredients: ['Pain', 'Steak', 'Bacon', 'Fromage']
@@ -30,7 +29,7 @@ const products = [
   {
     id: 3,
     name: 'Mushroom Burger',
-    description: 'Notre burger exotique',
+    description: "Des champis dans ton burger. Mais légal hein. Quoique... tellement bon que c'est louche.",
     price: 10.49,
     image: 'https://plus.unsplash.com/premium_photo-1664472724753-0a4700e4137b?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     ingredients: ['Pain', 'Steak', 'Champignons', 'Fromage']
@@ -38,7 +37,7 @@ const products = [
   {
     id: 4,
     name: 'BBQ Burger',
-    description: "Parfait pour l'été (et l'hiver)",
+    description: "Le goût du barbecue sans enfumer tes voisins. L'été dans un pain.",
     price: 11.29,
     image: 'https://burgeraddict.fr/wp-content/uploads/2024/09/MSG-Smash-Burger-FT-RECIPE0124-d9682401f3554ef683e24311abdf342b.jpg',
     ingredients: ['Pain', 'Steak', 'Oignon', 'Fromage']
@@ -46,7 +45,7 @@ const products = [
   {
     id: 5,
     name: "Chick'n Burger",
-    description: "22 y'a du poulet",
+    description: "Le poulet a pris sa retraite. Il finit sa carrière dans ton assiette. Avec honneur.",
     price: 10.99,
     image: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     ingredients: ['Pain', 'Fromage', 'Salade', 'Tomate']
@@ -54,7 +53,7 @@ const products = [
   {
     id: 6,
     name: 'Veggie Burger',
-    description: 'Le veggie',
+    description: "Zéro viande. Mais quand même du goût. Oui, c’est possible, on l’a fait.",
     price: 9.49,
     image: 'https://images.unsplash.com/photo-1549611016-3a70d82b5040?q=80&w=2030&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     ingredients: ['Pain', 'Salade', 'Tomate', 'Fromage']
@@ -62,7 +61,7 @@ const products = [
   {
     id: 7,
     name: 'Fish Burger',
-    description: 'Burger au poisson',
+    description: "Le burger qui nageait tranquille... avant de finir star du menu.",
     price: 12.99,
     image: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     ingredients: ['Pain', 'Fromage', 'Salade', 'Tomate']
@@ -70,7 +69,7 @@ const products = [
   {
     id: 8,
     name: 'Mozzarella Burger',
-    description: 'Un burger sous fromage de qualité',
+    description: "Tellement de mozza que même les pizzas nous jalousent.",
     price: 12.49,
     image: 'https://images.unsplash.com/photo-1520072959219-c595dc870360?q=80&w=2490&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     ingredients: ['Pain', 'Steak', 'Fromage', 'Tomate']
@@ -78,7 +77,7 @@ const products = [
   {
     id: 9,
     name: 'Cheesy Burger',
-    description: 'Lui aussi il a du fromage de qualité',
+    description: "Le fromage a pris le contrôle. C’est lui le patron ici.",
     price: 13.99,
     image: 'https://images.unsplash.com/photo-1512152272829-e3139592d56f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     ingredients: ['Pain', 'Steak', 'Fromage']
@@ -86,7 +85,7 @@ const products = [
   {
     id: 10,
     name: 'Onion Burger',
-    description: 'ONION ONION ONION',
+    description: "L’oignon dans tous ses états. Prépare les mouchoirs (de joie).",
     price: 11.99,
     image: 'https://images.unsplash.com/photo-1534790566855-4cb788d389ec?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     ingredients: ['Pain', 'Steak', 'Oignon', 'Fromage']
@@ -94,12 +93,13 @@ const products = [
   {
     id: 11,
     name: 'Bacon Big Burger',
-    description: 'Pour les mégas gros kiffeurs de bacon',
+    description: "Ici, le bacon a tout donné. Il mérite une standing ovation.",
     price: 12.99,
     image: 'https://plus.unsplash.com/premium_photo-1683655058728-415f4f2674bf?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     ingredients: ['Pain', 'Steak', 'Bacon', 'Fromage']
   }
 ]
+
 
 
 

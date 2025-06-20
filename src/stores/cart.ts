@@ -57,19 +57,6 @@ export const useCartStore = defineStore('cart', () => {
     }
   }
 
-  function subtractProductCustom(product: Product) {
-    const item = items.value.find((item) =>
-      item.id === product.id &&
-      JSON.stringify(item.ingredients.slice().sort()) === JSON.stringify(product.ingredients.slice().sort())
-    )
-    if (item) {
-      item.quantity = (item.quantity || 1) - 1
-      if (item.quantity === 0) {
-        items.value = items.value.filter((item) => item.id !== productId)
-      }
-    }
-  }
-
   const total = computed(() => {
     return items.value.reduce((acc, item) => acc + item.price * (item.quantity || 1), 0)
   })
