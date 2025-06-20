@@ -28,10 +28,10 @@
       <li class="flex items-center gap-1">
         <RouterLink to="/panier" class="flex items-center gap-1 relative">
           <span
-            v-if="cart.quantity > 0"
+            v-if="quantity > 0"
             class="absolute -top-2 left-3 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center"
           >
-            {{ cart.quantity }}
+            {{ quantity }}
           </span>
           <Icon id="cart-icon" icon="mdi:cart" width="24" height="24" />
           <span class="hidden sm:inline">Panier</span>
@@ -52,6 +52,7 @@ import { Icon } from '@iconify/vue'
 import { useUserStore } from '@/stores/user'
 import { useCartStore } from '@/stores/cart'
 import { extractStore } from '@/composables/store'
+
 const { user, logout } = extractStore(useUserStore())
-const cart = useCartStore()
+const { quantity } = extractStore(useCartStore())
 </script>
