@@ -2,19 +2,6 @@
 import UiNavbar from '@/components/ui/UiNavbar.vue'
 import { Toaster } from 'vue-sonner'
 import 'vue-sonner/style.css'
-import { useUserStore } from '@/stores/user'
-import { ref, watchEffect } from 'vue'
-import { extractStore } from '@/composables/store'
-
-const openUsernameForm = ref<boolean>(false)
-
-const { user } = extractStore(useUserStore())
-
-watchEffect(() => {
-  if (!user.value) {
-    openUsernameForm.value = true
-  }
-})
 </script>
 
 <template>
