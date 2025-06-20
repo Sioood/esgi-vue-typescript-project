@@ -93,7 +93,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import UiMenuCard from '@/components/ui/UiMenuCard.vue'
 import UiButton from '@/components/ui/UiButton.vue'
 import UiSidebar from '@/components/ui/UiSidebar.vue'
@@ -104,7 +104,7 @@ import type { Product } from '@/stores/product'
 import UiDialog from '@/components/ui/UiDialog.vue'
 
 const { products, getProducts } = extractStore(useProductStore())
-const cartStore = useCartStore()
+const { addProduct } = extractStore(useCartStore())
 
 const selectedProduct = ref<Product | null>(null)
 const sidebarVisible = ref(false)
@@ -161,11 +161,11 @@ function decrement(ingredient: IngredientState) {
   }
 }
 
-function confirmChanges(close: Function) {
+function confirmChanges(close: () => void) {
   if (selectedProduct.value) {
     const updatedIngredients = ingredientStates.value.flatMap(ing => Array(ing.count).fill(ing.name))
     const updatedProduct = { ...selectedProduct.value, ingredients: updatedIngredients }
-    cartStore.addProduct(updatedProduct)
+    addProduct(updatedProduct)
     close()
   }
 }

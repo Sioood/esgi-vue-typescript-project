@@ -8,7 +8,7 @@ import { useUserStore } from '@/stores/user'
 import { extractStore } from '@/composables/store'
 import { toast } from 'vue-sonner'
 
-const cart = useCartStore()
+const { items, clearCart } = extractStore(useCartStore())
 const router = useRouter()
 
 const { user, setUser } = extractStore(useUserStore())
@@ -41,7 +41,7 @@ async function submitOrder() {
       email: email.value,
       address: address.value,
     },
-    items: cart.items,
+    items: items.value,
   }
 
   try {
@@ -55,7 +55,7 @@ async function submitOrder() {
       throw new Error("Erreur lors de l'envoi de la commande")
     }
 
-    cart.clearCart()
+    clearCart()
     toast.success('Commande envoyée')
 
     router.push('/confirmation')
