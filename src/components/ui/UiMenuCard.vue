@@ -20,41 +20,62 @@
       <p class="text-gray-600 mb-2">{{ product.description }}</p>
       <span class="text-lg font-semibold text-orange-600">{{ product.price }} €</span>
       <div class="flex justify-between items-center">
-        <UiButton :id="`edit-button-${product.id}`" intent="warning" class="m-2"
-                  @click="$emit('openEdit', product)">
-          <Icon icon="mdi:cookie-edit" width="20" height="20"/>
+        <UiButton
+          :id="`edit-button-${product.id}`"
+          intent="warning"
+          class="m-2"
+          @click="$emit('openEdit', product)"
+        >
+          <Icon icon="mdi:cookie-edit" width="20" height="20" />
           <span>Editer le produit</span>
         </UiButton>
 
-        <UiAddItemButton
-          :product="product"
-        />
+        <UiButton
+          :id="`add-button-${product.id}`"
+          intent="warning"
+          class="m-2"
+          @click="addToCart(product)"
+        >
 
-
+          <Icon icon="mdi:cart-plus" width="20" height="20" />
+          <span >Ajouter au panier</span>
+        </UiButton>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {ref, nextTick} from 'vue'
-import UiAddItemButton from '@/components/ui/UiAddItemButton.vue';
-import type {Product} from '@/stores/product';
-import {Icon} from "@iconify/vue";
-import UiButton from "@/components/ui/UiButton.vue";
-import {toast} from "vue-sonner";
-import UiDialog from "@/components/ui/UiDialog.vue";
+import { ref } from 'vue'
+import type { Product } from '@/stores/product'
+import { Icon } from '@iconify/vue'
+import UiButton from '@/components/ui/UiButton.vue'
+import { useCartStore } from '@/stores/cart'
+import { extractStore } from '@/composables/store'
+import { useFlyToCart } from '@/composables/useFlyToCart.ts'
+import { toast } from 'vue-sonner'
+
+const { fly } = useFlyToCart()
+
+const { addProduct } = extractStore(useCartStore())
 
 const showDetails = ref(false)
-const emit = defineEmits<{
-  (e: 'openEdit', product: Product): void
-}>()
 
 function toggleDetails() {
   showDetails.value = !showDetails.value
 }
 
+const addToCart = (product: Product) => {
+  addProduct(product)
+  const fromEl = document.getElementById(`add-button-${product.id}`)
+  const toEl = document.getElementById('cart-icon')
+  if (fromEl && toEl) {
+    fly(product.image, fromEl, toEl)
+  }
+  toast.success(`${product.name} ajouté au panier !`)
+}
+
 defineProps<{
   product: Product
-}>();
+}>()
 </script>

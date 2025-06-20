@@ -39,16 +39,20 @@ export const useCartStore = defineStore('cart', () => {
     items.value.reduce((total, item) => total + (item.quantity || 1), 0),
   )
 
-  function removeProduct(productId: number) {
-    items.value = items.value.filter((item) => item.id !== productId)
+  function removeProduct(productId: number, ingredients: string[]) {
+    items.value = items.value.filter(item =>
+      !(item.id === productId &&
+        JSON.stringify(item.ingredients.slice().sort()) === JSON.stringify(ingredients.slice().sort()))
+    )
   }
 
-  function subtractProduct(productId: number) {
-    const item = items.value.find((item) => item.id === productId)
+  function subtractProduct(productId: number, ingredients: string[]) {
+    const item = items.value.find((item) => item.id === productId && JSON.stringify(item.ingredients.slice().sort()) === JSON.stringify(ingredients.slice().sort()))
     if (item) {
       item.quantity = (item.quantity || 1) - 1
       if (item.quantity === 0) {
-        items.value = items.value.filter((item) => item.id !== productId)
+        items.value = items.value.filter((item) => !(item.id === productId &&
+          JSON.stringify(item.ingredients.slice().sort()) === JSON.stringify(ingredients.slice().sort())))
       }
     }
   }

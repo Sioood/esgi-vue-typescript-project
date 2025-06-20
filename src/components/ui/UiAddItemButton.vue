@@ -48,7 +48,9 @@ const total = computed(() => {
   if (!isProductInCart.value) return 0
 
   return items.value
-    .filter((item) => item.id === props.product?.id)
+    .filter((item) => item.id === props.product?.id  &&
+      JSON.stringify(item.ingredients.slice().sort()) === JSON.stringify(props.product.ingredients.slice().sort())
+    )
     .reduce((acc, item) => acc + (item.quantity || 1), 0)
 })
 
@@ -63,12 +65,12 @@ const addToCart = () => {
 }
 
 const subtractFromCart = () => {
-  subtractProduct(props.product.id)
+  subtractProduct(props.product.id, props.product.ingredients)
   toast.success(`${props.product.name} supprimé du panier`)
 }
 
 const removeFromCart = () => {
-  removeProduct(props.product.id)
+  removeProduct(props.product.id, props.product.ingredients)
   toast.success(`${props.product.name} supprimé du panier`)
 }
 </script>
