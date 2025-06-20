@@ -26,5 +26,12 @@ export const useProductStore = defineStore('product', () => {
     }
   }
 
-  return { products, getProducts }
+  function updateProduct(updatedProduct: Product) {
+    const index = products.value.findIndex(p => p.id === updatedProduct.id)
+    if (index !== -1) {
+      products.value[index] = updatedProduct
+    }
+  }
+
+  return { products, getProducts, updateProduct }
 })

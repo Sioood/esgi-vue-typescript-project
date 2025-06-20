@@ -22,7 +22,12 @@ export const useCartStore = defineStore('cart', () => {
   }
 
   function addProduct(product: Product) {
-    const existing = items.value.find((item) => item.id === product.id)
+    // Recherche si un produit identique (même id ET mêmes ingrédients) existe
+    const existing = items.value.find(item =>
+      item.id === product.id &&
+      JSON.stringify(item.ingredients.slice().sort()) === JSON.stringify(product.ingredients.slice().sort())
+    )
+
     if (existing) {
       existing.quantity = (existing.quantity || 1) + 1
     } else {
@@ -40,6 +45,19 @@ export const useCartStore = defineStore('cart', () => {
 
   function subtractProduct(productId: number) {
     const item = items.value.find((item) => item.id === productId)
+    if (item) {
+      item.quantity = (item.quantity || 1) - 1
+      if (item.quantity === 0) {
+        items.value = items.value.filter((item) => item.id !== productId)
+      }
+    }
+  }
+
+  function subtractProductCustom(product: Product) {
+    const item = items.value.find((item) =>
+      item.id === product.id &&
+      JSON.stringify(item.ingredients.slice().sort()) === JSON.stringify(product.ingredients.slice().sort())
+    )
     if (item) {
       item.quantity = (item.quantity || 1) - 1
       if (item.quantity === 0) {
